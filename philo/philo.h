@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vpescete <vpescete@42student.fr>           +#+  +:+       +#+        */
+/*   By: vpescete <vpescete@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 17:23:35 by vpescete          #+#    #+#             */
-/*   Updated: 2023/02/21 19:30:00 by vpescete         ###   ########.fr       */
+/*   Updated: 2023/02/22 12:20:53 by vpescete         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,15 @@ typedef struct s_data {
 	
 }				t_data;
 
+/* MINILIBFT FUNCTION */
+int	ft_atoi(char *s);
+
 /* HANDLE INPUT */
 int		handle_input(int ac, char **av);
 void	handle_input_error(void);
+
+/* ALLOCATE FUNCTION */ 
+void	allocate_data(t_data *data, char **av, char ac);
+void	allocate_philos(t_philo	*philos, t_data *data);
 
 #endif
