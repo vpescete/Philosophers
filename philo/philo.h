@@ -6,7 +6,7 @@
 /*   By: vpescete <vpescete@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 17:23:35 by vpescete          #+#    #+#             */
-/*   Updated: 2023/02/22 12:20:53 by vpescete         ###   ########.fr       */
+/*   Updated: 2023/02/22 17:13:20 by vpescete         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,10 @@ typedef struct s_philo {
 	int             id;
 	int             eat_cont;
 	int             status;
-	int             eating;
-	u_int64_t        ttd;
-	pthread_mutex_t	lock;
-	pthread_mutex_t	*r_fork;
-	pthread_mutex_t	*l_fork;
+	u_int64_t       ttd;
+	struct timeval	start_slepp;
+	pthread_mutex_t	r_fork;
+	pthread_mutex_t	l_fork;
 	
 }				t_philo;
 
@@ -49,22 +48,23 @@ typedef struct s_data {
 	u_int64_t       death_time;
 	u_int64_t       eat_time;
 	u_int64_t       sleep_time;
-	u_int64_t       start_time;
+	struct timeval	start_time;
 	pthread_mutex_t *forks;
-	pthread_mutex_t lock;
-	pthread_mutex_t write;
 	
 }				t_data;
 
 /* MINILIBFT FUNCTION */
-int	ft_atoi(char *s);
+int			ft_atoi(char *s);
 
 /* HANDLE INPUT */
-int		handle_input(int ac, char **av);
-void	handle_input_error(void);
+int			handle_input(int ac, char **av);
+void		handle_input_error(void);
 
 /* ALLOCATE FUNCTION */ 
-void	allocate_data(t_data *data, char **av, char ac);
-void	allocate_philos(t_philo	*philos, t_data *data);
+t_data		allocate_data(char **av, char ac);
+void		allocate_philos(t_philo	*philos, t_data *data);
+void		*start_execute(void *data);
+void		routine(t_philo *data);
+u_int64_t	ft_gettimestamp(t_data data);
 
 #endif

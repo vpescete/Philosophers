@@ -6,11 +6,21 @@
 /*   By: vpescete <vpescete@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 18:52:24 by vpescete          #+#    #+#             */
-/*   Updated: 2023/02/22 12:28:44 by vpescete         ###   ########.fr       */
+/*   Updated: 2023/02/22 16:09:48 by vpescete         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
+
+u_int64_t	ft_gettimestamp(t_data data)
+{
+	struct timeval	now;
+	u_int64_t		res;
+
+	gettimeofday(&now, NULL);
+	res = ((now.tv_usec / 1000) - (data.start_time.tv_usec / 1000));
+	return (res);
+}
 
 int	ft_atoi(char *s)
 {
@@ -57,17 +67,18 @@ int	check_input_int(int ac, char **av)
 
 int	handle_input(int ac, char **av)
 {
-	t_data	*data;
-	t_philo	*philos;
+	t_data	data;
 	
-	if (ac < 5 || ac > 6 || !(ft_atoi(av[1]) >= 0 && ft_atoi(av[1]) <= 200)
+	if (ac < 5 || ac > 6 || !(ft_atoi(av[1]) >= 1 && ft_atoi(av[1]) <= 200)
 		|| !check_input_int(ac, av))
 	{
 		handle_input_error();
 		return (0);
 	}
-	data = malloc(sizeof(t_data));
-	allocate_data(data, av, ac);
-	philos = malloc(data->philo_num * sizeof(t_philo));
+	data = allocate_data(av, ac);
+	data.philos = malloc(data.philo_num * sizeof(t_philo));
+	if (!data.philos)
+		return (0);
+	allocate_philos(data.philos, &data);
 	return (1);
 }
