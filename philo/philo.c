@@ -3,37 +3,51 @@
 /*                                                        :::      ::::::::   */
 /*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vpescete <vpescete@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vpescete <vpescete@42student.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 18:03:54 by vpescete          #+#    #+#             */
-/*   Updated: 2023/02/23 09:57:10 by vpescete         ###   ########.fr       */
+/*   Updated: 2023/02/23 14:53:48 by vpescete         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
+// void	status_one(t_philo *philo)
+// {
+// 	// we check if the timestamp is less than the time to die
+// 	// 	in this case we change status to 4
+// 	// otherwise we wait till the time_sleep
+// 	// if we reach the time_sleep, then we change status to 1
+// }
+
 void	routine(t_philo *philo)
 {
 	while (philo->data->meals_nb == 0 || philo->eat_cont < philo->data->meals_nb)
 	{
-		if (philo->status == 0) // sta dormendo 
+		if (philo->status == 0)
 		{
-			// check timestamp sul tempo morte
-		}
+			
+		} // sta dormendo 
+			// status_one(philo);
 		else if (philo->status == 1) // sta pensando
 		{
-			// check timpestamp sul tempo morte
-			// wait till l_fork is unlock
+			// we check if the timestamp is greater than the time to die
+			// 	in this case we change status to 4
+			// otherwise we wait till l_fork is unlock
+			// in case that we lock the l_fork, then we change status to 2
 		}
 		else if (philo->status == 2) // sta ancora pensando
 		{
-			// check timpestamp sul tempo morte
+			// we check if the timestamp is less than the time to die
+			// 	in this case we change status to 4
 			//  wait till r_fork is unlock
+			// in case that we lock the r_fork, then we change status to 3
+			// otherwise we wait till r_fork is unlock
 		}
 		else if (philo->status == 3) // sta mangiando
 		{
 			// reset time_to_die
-			// check timestamp on eat_time
+			// we must eat until we reach the eat_time
 			// eat_count++;
 			// new timeval & change status to 0
 		}
