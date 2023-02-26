@@ -3,22 +3,48 @@
 /*                                                        :::      ::::::::   */
 /*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vpescete <vpescete@42student.fr>           +#+  +:+       +#+        */
+/*   By: vpescete <vpescete@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 18:03:54 by vpescete          #+#    #+#             */
-/*   Updated: 2023/02/23 14:53:48 by vpescete         ###   ########.fr       */
+/*   Updated: 2023/02/26 12:46:23 by vpescete         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-// void	status_one(t_philo *philo)
+// void	status_zero(t_philo *philo)
 // {
-// 	// we check if the timestamp is less than the time to die
+// 	// we check if the actual timestamp less the one that we calculate at the begging is less than the time to die
 // 	// 	in this case we change status to 4
 // 	// otherwise we wait till the time_sleep
 // 	// if we reach the time_sleep, then we change status to 1
 // }
+
+// void	status_one(t_philo *philo)
+// {
+// 	// we check if the timestamp is greater than the time to die
+// 	// 	in this case we change status to 4
+// 	// otherwise we wait till l_fork is unlock
+// 	// in case that we lock the l_fork, then we change status to 2
+// }
+
+// void	status_two(t_philo *philo)
+// {
+// 	// we check if the timestamp is less than the time to die
+// 	// 	in this case we change status to 4
+// 	//  wait till r_fork is unlock
+// 	// in case that we lock the r_fork, then we change status to 3
+// 	// otherwise we wait till r_fork is unlock
+// }
+
+// void	status_three(t_philo *philo)
+// {
+// 	// reset time_to_die
+// 	// we must eat until we reach the eat_time
+// 	// eat_count++;
+// 	// new timeval & change status to 0
+// }
+
 
 void	routine(t_philo *philo)
 {
@@ -26,30 +52,19 @@ void	routine(t_philo *philo)
 	{
 		if (philo->status == 0)
 		{
-			
-		} // sta dormendo 
-			// status_one(philo);
+			// status_zero(philo);
+		}
 		else if (philo->status == 1) // sta pensando
 		{
-			// we check if the timestamp is greater than the time to die
-			// 	in this case we change status to 4
-			// otherwise we wait till l_fork is unlock
-			// in case that we lock the l_fork, then we change status to 2
+			// status_one(philo);
 		}
 		else if (philo->status == 2) // sta ancora pensando
 		{
-			// we check if the timestamp is less than the time to die
-			// 	in this case we change status to 4
-			//  wait till r_fork is unlock
-			// in case that we lock the r_fork, then we change status to 3
-			// otherwise we wait till r_fork is unlock
+			// status_two(philo);
 		}
 		else if (philo->status == 3) // sta mangiando
 		{
-			// reset time_to_die
-			// we must eat until we reach the eat_time
-			// eat_count++;
-			// new timeval & change status to 0
+			// status_three(philo);
 		}
 		else // status == 4
 		{

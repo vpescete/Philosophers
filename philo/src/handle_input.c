@@ -6,16 +6,16 @@
 /*   By: vpescete <vpescete@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 18:52:24 by vpescete          #+#    #+#             */
-/*   Updated: 2023/02/22 16:09:48 by vpescete         ###   ########.fr       */
+/*   Updated: 2023/02/26 11:15:29 by vpescete         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
 
-u_int64_t	ft_gettimestamp(t_data data)
+unsigned long	ft_gettimestamp(t_data data)
 {
 	struct timeval	now;
-	u_int64_t		res;
+	unsigned long	res;
 
 	gettimeofday(&now, NULL);
 	res = ((now.tv_usec / 1000) - (data.start_time.tv_usec / 1000));
