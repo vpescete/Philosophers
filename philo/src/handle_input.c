@@ -6,21 +6,11 @@
 /*   By: vpescete <vpescete@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 18:52:24 by vpescete          #+#    #+#             */
-/*   Updated: 2023/02/26 11:15:29 by vpescete         ###   ########.fr       */
+/*   Updated: 2023/03/02 11:54:53 by vpescete         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
-
-unsigned long	ft_gettimestamp(t_data data)
-{
-	struct timeval	now;
-	unsigned long	res;
-
-	gettimeofday(&now, NULL);
-	res = ((now.tv_usec / 1000) - (data.start_time.tv_usec / 1000));
-	return (res);
-}
 
 int	ft_atoi(char *s)
 {
@@ -80,5 +70,6 @@ int	handle_input(int ac, char **av)
 	if (!data.philos)
 		return (0);
 	allocate_philos(data.philos, &data);
+	// printf("sono qui!\n");
 	return (1);
 }

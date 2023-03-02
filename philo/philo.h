@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vpescete <vpescete@42student.fr>           +#+  +:+       +#+        */
+/*   By: vpescete <vpescete@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 17:23:35 by vpescete          #+#    #+#             */
-/*   Updated: 2023/02/23 14:11:05 by vpescete         ###   ########.fr       */
+/*   Updated: 2023/03/02 10:27:49 by vpescete         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,14 @@ t_data			allocate_data(char **av, char ac);
 void			allocate_philos(t_philo	*philos, t_data *data);
 void			*start_execute(void *data);
 void			routine(t_philo *data);
-unsigned long	ft_gettimestamp(t_data data);
+unsigned long	ft_gettimestamp(t_data *data);
+
+/* ROUTINE STATUS */ 
+
+void			status_zero(t_philo *philo);
+void			status_one(t_philo *philo);
+void			status_two(t_philo *philo);
+void			status_three(t_philo *philo);
+
 
 #endif

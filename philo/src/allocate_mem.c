@@ -6,7 +6,7 @@
 /*   By: vpescete <vpescete@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 12:18:29 by vpescete          #+#    #+#             */
-/*   Updated: 2023/02/22 16:38:56 by vpescete         ###   ########.fr       */
+/*   Updated: 2023/03/02 11:52:37 by vpescete         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void	allocate_philos(t_philo	*philos, t_data *data)
 		philos[i].ttd = 0;
 		pthread_create(&philos[i].t1, NULL, &start_execute, &philos[i]);
 	}
+	// write(1, "sono qui!\n", 10);
 	i = -1;
 	while (++i < data->philo_num)
 	{
