@@ -6,7 +6,7 @@
 /*   By: vpescete <vpescete@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 18:03:54 by vpescete          #+#    #+#             */
-/*   Updated: 2023/03/05 18:05:34 by vpescete         ###   ########.fr       */
+/*   Updated: 2023/03/05 18:31:24 by vpescete         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ int	main(int ac, char **av)
 		i = -1;
 		while (++i < data->philo_num)
 		{
+			usleep(10);
 			if (!checker(data->philos, i))
 				exit(0);
 		}
