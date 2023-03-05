@@ -6,7 +6,7 @@
 /*   By: vpescete <vpescete@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 18:03:54 by vpescete          #+#    #+#             */
-/*   Updated: 2023/03/05 18:31:24 by vpescete         ###   ########.fr       */
+/*   Updated: 2023/03/05 22:59:56 by vpescete         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,15 @@ void	*start_execute(void *data)
 {
 	t_philo	*philo;
 
+	
 	philo = (t_philo *)data;
-	philo->l_fork = &philo->data->forks[philo->id];
-	if (philo->id == philo->data->philo_num - 1)
-		philo->r_fork = &philo->data->forks[0];
-	else
-		philo->r_fork = &philo->data->forks[philo->id + 1];
+	// printf("id: %i	addr l_fork: %p\n", philo[i].id, philo->l_fork);
+	// printf("id: %i	addr r_fork: %p\n", philo->id, philo->r_fork);
+	// usleep(100);
+	while (!philo->data->checker_is_run)
+		continue;
+	if (philo->id % 2 == 0)
+		usleep(1000);
 	routine(philo);
 	return (0);
 }
@@ -30,6 +33,8 @@ int	checker(t_philo *philo, int i)
 {
 	if (philo[i].data->meals_nb != 0 && philo[i].eat_count >= philo[i].data->meals_nb)
 		return (0);
+	if (ft_gettimestamp(philo[i].start_sleep) > philo[i].data->death_time)
+		philo[i].status = 4;
 	if (philo[i].prev_status != philo[i].status)
 	{
 		if (philo[i].status == 0)
@@ -38,7 +43,7 @@ int	checker(t_philo *philo, int i)
 					philo[i].id, SLEEP);
 			philo[i].prev_status = 0;
 		}
-		if (philo[i].status == 5)
+		else if (philo[i].status == 5)
 		{
 			printf("%lu %d %s\n", ft_gettimestamp(philo[i].data->start_time),
 					philo[i].id, THINK);			
@@ -46,21 +51,17 @@ int	checker(t_philo *philo, int i)
 		}
 		else if (philo[i].status == 1)
 		{
-			printf("%lu %d %s\n", ft_gettimestamp(philo[i].data->start_time),
+			printf("%lu %d l_%s\n", ft_gettimestamp(philo[i].data->start_time),
 					philo[i].id, FORK);
 			philo[i].prev_status = 1;
 		}
 		else if (philo[i].status == 2)
 		{
-			printf("%lu %d %s\n", ft_gettimestamp(philo[i].data->start_time),
+			printf("%lu %d r_%s\n", ft_gettimestamp(philo[i].data->start_time),
 					philo[i].id, FORK);
-			philo[i].prev_status = 2;
-		}
-		else if (philo[i].status == 3)
-		{
 			printf("%lu %d %s\n", ft_gettimestamp(philo[i].data->start_time),
 					philo[i].id, EAT);
-			philo[i].prev_status = 3;
+			philo[i].prev_status = 2;
 		}
 		else if (philo[i].status == 4)
 		{
@@ -80,14 +81,14 @@ int	main(int ac, char **av)
 	data = handle_input(ac, av);
 	if (!data)
 		return (0);
+	data->checker_is_run = 1;
 	while (1)
 	{
 		i = -1;
 		while (++i < data->philo_num)
 		{
-			usleep(10);
 			if (!checker(data->philos, i))
-				exit(0);
+				return (0);
 		}
 	}	
 	return (0);

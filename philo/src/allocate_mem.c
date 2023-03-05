@@ -6,7 +6,7 @@
 /*   By: vpescete <vpescete@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 12:18:29 by vpescete          #+#    #+#             */
-/*   Updated: 2023/03/05 18:50:55 by vpescete         ###   ########.fr       */
+/*   Updated: 2023/03/05 22:39:40 by vpescete         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ t_data	*allocate_data(char **av, char ac)
 		data->meals_nb = ft_atoi(av[5]);
 	else
 		data->meals_nb = 0;
+	data->checker_is_run = 0;
 	data->forks = malloc(data->philo_num * sizeof(pthread_mutex_t));
 	gettimeofday(&data->start_time, NULL);
 	return (data);
@@ -42,8 +43,9 @@ void	allocate_philos(t_philo	*philos, t_data *data)
 		philos[i].data = data;
 		philos[i].id = i;
 		pthread_mutex_init(data->forks + i, NULL);
+		// printf("addr fork: %p\n", data->forks + i);
 		philos[i].status = 5;
-		philos[i].prev_status = 5;
+		philos[i].prev_status = 0;
 		philos[i].eat_count = 0;
 		gettimeofday(&philos[i].start_sleep, NULL);
 	}
@@ -51,25 +53,14 @@ void	allocate_philos(t_philo	*philos, t_data *data)
 	while (++i < data->philo_num)
 	{
 		philos[i].l_fork = data->forks + i;
+		// printf("id: %i	addr l_fork: %p\n", philos[i].id, philos[i].l_fork);
 		if (i == data->philo_num - 1)
 			philos[i].r_fork = data->forks;
 		else
 			philos[i].r_fork = (data->forks + i + 1);
-		usleep(10);
-		pthread_create(&philos[i].t1, NULL, &start_execute, &philos[i]);
-		i++;
+		// printf("id: %i	addr r_fork: %p\n", philos[i].id, philos[i].r_fork);
 	}
-	usleep(10);
-	i = 0;
+	i = -1;
 	while (++i < data->philo_num)
-	{
-		philos[i].l_fork = data->forks + i;
-		if (i == data->philo_num - 1)
-			philos[i].r_fork = data->forks;
-		else
-			philos[i].r_fork = (data->forks + i + 1);
-		usleep(10);
-		pthread_create(&philos[i].t1, NULL, &start_execute, &philos[i]);
-		i++;
-	}
+		pthread_create(&philos[i].t1, NULL, &start_execute, philos + i);
 }

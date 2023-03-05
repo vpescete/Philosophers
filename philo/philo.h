@@ -6,7 +6,7 @@
 /*   By: vpescete <vpescete@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 17:23:35 by vpescete          #+#    #+#             */
-/*   Updated: 2023/03/05 18:04:47 by vpescete         ###   ########.fr       */
+/*   Updated: 2023/03/05 22:27:34 by vpescete         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ typedef struct s_data {
 	unsigned long       sleep_time;
 	struct timeval		start_time;
 	pthread_mutex_t		*forks;
+	int					checker_is_run;
 	
 }				t_data;
 
