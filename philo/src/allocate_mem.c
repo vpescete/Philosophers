@@ -6,7 +6,7 @@
 /*   By: vpescete <vpescete@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 12:18:29 by vpescete          #+#    #+#             */
-/*   Updated: 2023/03/05 18:20:47 by vpescete         ###   ########.fr       */
+/*   Updated: 2023/03/05 18:50:55 by vpescete         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,8 @@ t_data	*allocate_data(char **av, char ac)
 	data->sleep_time = ft_atoi(av[4]);
 	if (ac == 6)
 		data->meals_nb = ft_atoi(av[5]);
-	// printf("philo_num: %d\n", data->philo_num);
-	// printf("death_time: %llu\n", data->death_time);
-	// printf("eat_time: %llu\n", data->eat_time);
-	// printf("sleep_time: %llu\n", data->sleep_time);
-	// if (ac == 6)
-	// 	printf("meals_nb: %d\n", data->meals_nb);
+	else
+		data->meals_nb = 0;
 	data->forks = malloc(data->philo_num * sizeof(pthread_mutex_t));
 	gettimeofday(&data->start_time, NULL);
 	return (data);
