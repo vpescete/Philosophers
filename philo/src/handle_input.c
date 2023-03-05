@@ -6,7 +6,7 @@
 /*   By: vpescete <vpescete@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 18:52:24 by vpescete          #+#    #+#             */
-/*   Updated: 2023/03/02 11:54:53 by vpescete         ###   ########.fr       */
+/*   Updated: 2023/03/05 16:04:57 by vpescete         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,21 +55,22 @@ int	check_input_int(int ac, char **av)
 	return (1);
 }
 
-int	handle_input(int ac, char **av)
+t_data	*handle_input(int ac, char **av)
 {
-	t_data	data;
+	t_data	*data;
 	
 	if (ac < 5 || ac > 6 || !(ft_atoi(av[1]) >= 1 && ft_atoi(av[1]) <= 200)
 		|| !check_input_int(ac, av))
 	{
 		handle_input_error();
-		return (0);
+		return (NULL);
 	}
 	data = allocate_data(av, ac);
-	data.philos = malloc(data.philo_num * sizeof(t_philo));
-	if (!data.philos)
-		return (0);
-	allocate_philos(data.philos, &data);
+	data->philos = malloc(data->philo_num * sizeof(t_philo));
+	data->dead = 0;
+	if (!data->philos)
+		return (NULL);
+	allocate_philos(data->philos, data);
 	// printf("sono qui!\n");
-	return (1);
+	return (data);
 }

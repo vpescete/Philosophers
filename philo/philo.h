@@ -6,7 +6,7 @@
 /*   By: vpescete <vpescete@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 17:23:35 by vpescete          #+#    #+#             */
-/*   Updated: 2023/03/02 10:27:49 by vpescete         ###   ########.fr       */
+/*   Updated: 2023/03/05 18:04:47 by vpescete         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,12 @@
 # include <sys/time.h>
 # include <unistd.h>
 
+# define SLEEP "is sleeping"
+# define FORK "has taken a fork"
+# define EAT "is eating"
+# define THINK "is thinking"
+# define DEAD "died"
+
 /* DEFINE STRUCT */
 struct s_data;
 
@@ -28,12 +34,14 @@ typedef struct s_philo {
 	struct s_data	*data;
 	pthread_t       t1;
 	int             id;
-	int             eat_cont;
+	int             eat_count;
 	int             status;
+	int				prev_status;
 	unsigned long	ttd;
-	struct timeval	start_slepp;
-	pthread_mutex_t	r_fork;
-	pthread_mutex_t	l_fork;
+	struct timeval	start_sleep;
+	struct timeval	start_eat;
+	pthread_mutex_t	*r_fork;
+	pthread_mutex_t	*l_fork;
 	
 }				t_philo;
 
@@ -57,22 +65,21 @@ typedef struct s_data {
 int				ft_atoi(char *s);
 
 /* HANDLE INPUT */
-int				handle_input(int ac, char **av);
+t_data			*handle_input(int ac, char **av);
 void			handle_input_error(void);
 
 /* ALLOCATE FUNCTION */ 
-t_data			allocate_data(char **av, char ac);
+t_data			*allocate_data(char **av, char ac);
 void			allocate_philos(t_philo	*philos, t_data *data);
 void			*start_execute(void *data);
-void			routine(t_philo *data);
-unsigned long	ft_gettimestamp(t_data *data);
+unsigned long	ft_gettimestamp(struct timeval goddog);
 
 /* ROUTINE STATUS */ 
-
+int				checker(t_philo *philo, int i);
 void			status_zero(t_philo *philo);
 void			status_one(t_philo *philo);
 void			status_two(t_philo *philo);
 void			status_three(t_philo *philo);
-
+void			routine(t_philo *data);
 
 #endif
