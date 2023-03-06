@@ -6,7 +6,7 @@
 /*   By: vpescete <vpescete@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 12:18:29 by vpescete          #+#    #+#             */
-/*   Updated: 2023/03/06 10:53:44 by vpescete         ###   ########.fr       */
+/*   Updated: 2023/03/06 12:06:09 by vpescete         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 t_data	*allocate_data(char **av, char ac)
 {
 	t_data	*data;
-	
+
 	data = malloc(sizeof(t_data));
 	if (!data)
 		return (NULL);

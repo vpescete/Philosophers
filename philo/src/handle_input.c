@@ -6,7 +6,7 @@
 /*   By: vpescete <vpescete@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 18:52:24 by vpescete          #+#    #+#             */
-/*   Updated: 2023/03/05 16:04:57 by vpescete         ###   ########.fr       */
+/*   Updated: 2023/03/06 12:06:59 by vpescete         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	ft_atoi(char *s)
 {
 	int	value;
 	int	sign;
-	
+
 	sign = 1;
 	value = 0;
 	while (*s == 32 || (*s >= 9 && *s <= 13))
@@ -33,7 +33,7 @@ int	ft_atoi(char *s)
 		value += *s - 48;
 		s++;
 	}
-	return (value * sign);	
+	return (value * sign);
 }
 
 int	check_input_int(int ac, char **av)
@@ -58,7 +58,7 @@ int	check_input_int(int ac, char **av)
 t_data	*handle_input(int ac, char **av)
 {
 	t_data	*data;
-	
+
 	if (ac < 5 || ac > 6 || !(ft_atoi(av[1]) >= 1 && ft_atoi(av[1]) <= 200)
 		|| !check_input_int(ac, av))
 	{
@@ -66,11 +66,15 @@ t_data	*handle_input(int ac, char **av)
 		return (NULL);
 	}
 	data = allocate_data(av, ac);
+	if (data->death_time < 60 || data->sleep_time < 60 || data->eat_time < 60)
+	{
+		handle_input_error();
+		return (NULL);
+	}
 	data->philos = malloc(data->philo_num * sizeof(t_philo));
 	data->dead = 0;
 	if (!data->philos)
 		return (NULL);
 	allocate_philos(data->philos, data);
-	// printf("sono qui!\n");
 	return (data);
 }

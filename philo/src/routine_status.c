@@ -6,7 +6,7 @@
 /*   By: vpescete <vpescete@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 16:01:12 by vpescete          #+#    #+#             */
-/*   Updated: 2023/03/06 11:00:56 by vpescete         ###   ########.fr       */
+/*   Updated: 2023/03/06 12:07:52 by vpescete         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 void	status_zero(t_philo *philo)
 {
-	// if (ft_gettimestamp(philo->start_sleep) >= philo->data->death_time)
-	// 	philo->status = 4;
 	if (ft_gettimestamp(philo->start_sleep) >= philo->data->sleep_time)
 	{
 		philo->prev_status = 0;
@@ -27,16 +25,7 @@ void	status_zero(t_philo *philo)
 void	status_one(t_philo *philo)
 {
 	if (pthread_mutex_lock(philo->l_fork) == 0)
-	{
 		philo->status = 1;
-		// printf("	id: %i	addr l_fork: %p\n", philo->id, philo->l_fork);
-		// if (ft_gettimestamp(philo->start_sleep) >= philo->data->death_time)
-		// {
-		// 	philo->status = 4;
-		// 	return ;
-		// }
-		// status_two(philo);
-	}
 }
 
 void	status_two(t_philo *philo)
@@ -46,13 +35,6 @@ void	status_two(t_philo *philo)
 	else if (pthread_mutex_lock(philo->r_fork) == 0)
 	{
 		philo->status = 2;
-		// printf("	id: %i	addr r_fork: %p\n", philo->id, philo->r_fork);
-		// if (ft_gettimestamp(philo->start_sleep) >= philo->data->death_time)
-		// {
-		// 	philo->status = 4;
-		// 	return ;
-		// }
-		// philo->status = 3;
 		gettimeofday(&philo->start_eat, NULL);
 		return ;
 	}
@@ -71,7 +53,7 @@ void	status_three(t_philo *philo)
 			if (philo->eat_count == philo->data->meals_nb)
 			{
 				philo->status = 10;
-				philo->data->finished++; 
+				philo->data->finished++;
 				return ;
 			}
 		}

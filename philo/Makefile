@@ -7,7 +7,7 @@ COLOUR_END=\033[0m
 
 SRC = philo.c \
 		src/handle_input.c src/handle_error.c src/allocate_mem.c \
-		src/routine_status.c src/gettime.c
+		src/routine_status.c src/gettime.c src/checker.c
 
 OBJ = $(SRC:.c=.o)
 

@@ -6,7 +6,7 @@
 /*   By: vpescete <vpescete@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 12:17:35 by vpescete          #+#    #+#             */
-/*   Updated: 2023/03/06 11:15:20 by vpescete         ###   ########.fr       */
+/*   Updated: 2023/03/06 12:07:14 by vpescete         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void	handle_input_error(void)
 	printf("3th and 4th are considered in milliseconds\e[24m\n\n");
 }
 
-
 void	ft_close(t_data *data)
 {
 	int	i;
@@ -32,6 +31,7 @@ void	ft_close(t_data *data)
 	{
 		pthread_mutex_destroy(&data->forks[i]);
 		pthread_mutex_destroy(data->philos[i].l_fork);
+		pthread_mutex_destroy(data->philos[i].r_fork);
 	}
 	clear_data(data);
 }
@@ -44,4 +44,5 @@ void	clear_data(t_data	*data)
 		free(data->forks);
 	if (data->philos)
 		free(data->philos);
+	free(data);
 }

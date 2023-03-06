@@ -6,7 +6,7 @@
 /*   By: vpescete <vpescete@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 17:23:35 by vpescete          #+#    #+#             */
-/*   Updated: 2023/03/06 11:14:39 by vpescete         ###   ########.fr       */
+/*   Updated: 2023/03/06 12:10:11 by vpescete         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,39 +27,34 @@
 # define DEAD "died"
 
 /* DEFINE STRUCT */
-struct s_data;
+struct	s_data;
 
 typedef struct s_philo {
-	
 	struct s_data	*data;
-	pthread_t       t1;
-	int             id;
-	int             eat_count;
-	int             status;
+	pthread_t		t1;
+	int				id;
+	int				eat_count;
+	int				status;
 	int				prev_status;
-	unsigned long	ttd;
 	struct timeval	start_sleep;
 	struct timeval	start_eat;
 	pthread_mutex_t	*r_fork;
 	pthread_mutex_t	*l_fork;
-	
 }				t_philo;
 
 typedef struct s_data {
-	
-	pthread_t       	*tid;
-	int             	philo_num;
-	int             	meals_nb;
-	int             	dead;
-	int             	finished;
+	pthread_t			*tid;
+	int					philo_num;
+	int					meals_nb;
+	int					dead;
+	int					finished;
 	int					checker_is_run;
 	t_philo				*philos;
-	unsigned long       death_time;
-	unsigned long       eat_time;
-	unsigned long       sleep_time;
+	unsigned long		death_time;
+	unsigned long		eat_time;
+	unsigned long		sleep_time;
 	struct timeval		start_time;
 	pthread_mutex_t		*forks;
-	
 }				t_data;
 
 /* MINILIBFT FUNCTION */
@@ -69,7 +64,7 @@ int				ft_atoi(char *s);
 t_data			*handle_input(int ac, char **av);
 void			handle_input_error(void);
 
-/* ALLOCATE FUNCTION */ 
+/* ALLOCATE FUNCTION */
 t_data			*allocate_data(char **av, char ac);
 void			allocate_philos(t_philo	*philos, t_data *data);
 void			*start_execute(void *data);
@@ -77,8 +72,7 @@ unsigned long	ft_gettimestamp(struct timeval goddog);
 void			clear_data(t_data	*data);
 void			ft_close(t_data *data);
 
-
-/* ROUTINE STATUS */ 
+/* ROUTINE STATUS */
 int				checker(t_philo *philo, int i);
 void			status_zero(t_philo *philo);
 void			status_one(t_philo *philo);
