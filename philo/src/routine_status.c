@@ -6,7 +6,7 @@
 /*   By: vpescete <vpescete@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 16:01:12 by vpescete          #+#    #+#             */
-/*   Updated: 2023/03/05 23:00:17 by vpescete         ###   ########.fr       */
+/*   Updated: 2023/03/06 11:00:56 by vpescete         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,15 @@ void	status_three(t_philo *philo)
 		pthread_mutex_unlock(philo->l_fork);
 		pthread_mutex_unlock(philo->r_fork);
 		if (philo->data->meals_nb > 0)
+		{
 			philo->eat_count++;
+			if (philo->eat_count == philo->data->meals_nb)
+			{
+				philo->status = 10;
+				philo->data->finished++; 
+				return ;
+			}
+		}
 		gettimeofday(&philo->start_sleep, NULL);
 		return ;
 	}
@@ -85,5 +93,7 @@ void	routine(t_philo *philo)
 			status_two(philo);
 		else if (philo->status == 2)
 			status_three(philo);
+		else if (philo->status == 10)
+			gettimeofday(&philo->start_sleep, NULL);
 	}
 }

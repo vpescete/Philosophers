@@ -6,7 +6,7 @@
 /*   By: vpescete <vpescete@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 17:23:35 by vpescete          #+#    #+#             */
-/*   Updated: 2023/03/05 22:27:34 by vpescete         ###   ########.fr       */
+/*   Updated: 2023/03/06 11:14:39 by vpescete         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,13 @@ typedef struct s_data {
 	int             	meals_nb;
 	int             	dead;
 	int             	finished;
+	int					checker_is_run;
 	t_philo				*philos;
 	unsigned long       death_time;
 	unsigned long       eat_time;
 	unsigned long       sleep_time;
 	struct timeval		start_time;
 	pthread_mutex_t		*forks;
-	int					checker_is_run;
 	
 }				t_data;
 
@@ -74,6 +74,9 @@ t_data			*allocate_data(char **av, char ac);
 void			allocate_philos(t_philo	*philos, t_data *data);
 void			*start_execute(void *data);
 unsigned long	ft_gettimestamp(struct timeval goddog);
+void			clear_data(t_data	*data);
+void			ft_close(t_data *data);
+
 
 /* ROUTINE STATUS */ 
 int				checker(t_philo *philo, int i);

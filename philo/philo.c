@@ -6,7 +6,7 @@
 /*   By: vpescete <vpescete@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 18:03:54 by vpescete          #+#    #+#             */
-/*   Updated: 2023/03/05 22:59:56 by vpescete         ###   ########.fr       */
+/*   Updated: 2023/03/06 11:14:55 by vpescete         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,6 @@ void	*start_execute(void *data)
 
 	
 	philo = (t_philo *)data;
-	// printf("id: %i	addr l_fork: %p\n", philo[i].id, philo->l_fork);
-	// printf("id: %i	addr r_fork: %p\n", philo->id, philo->r_fork);
-	// usleep(100);
 	while (!philo->data->checker_is_run)
 		continue;
 	if (philo->id % 2 == 0)
@@ -31,7 +28,8 @@ void	*start_execute(void *data)
 
 int	checker(t_philo *philo, int i)
 {
-	if (philo[i].data->meals_nb != 0 && philo[i].eat_count >= philo[i].data->meals_nb)
+	if (philo->data->meals_nb != 0 &&
+		philo->data->finished == philo->data->philo_num)
 		return (0);
 	if (ft_gettimestamp(philo[i].start_sleep) > philo[i].data->death_time)
 		philo[i].status = 4;
@@ -51,13 +49,13 @@ int	checker(t_philo *philo, int i)
 		}
 		else if (philo[i].status == 1)
 		{
-			printf("%lu %d l_%s\n", ft_gettimestamp(philo[i].data->start_time),
+			printf("%lu %d %s\n", ft_gettimestamp(philo[i].data->start_time),
 					philo[i].id, FORK);
 			philo[i].prev_status = 1;
 		}
 		else if (philo[i].status == 2)
 		{
-			printf("%lu %d r_%s\n", ft_gettimestamp(philo[i].data->start_time),
+			printf("%lu %d %s\n", ft_gettimestamp(philo[i].data->start_time),
 					philo[i].id, FORK);
 			printf("%lu %d %s\n", ft_gettimestamp(philo[i].data->start_time),
 					philo[i].id, EAT);
@@ -90,6 +88,7 @@ int	main(int ac, char **av)
 			if (!checker(data->philos, i))
 				return (0);
 		}
-	}	
+	}
+	ft_close(data);
 	return (0);
 }
