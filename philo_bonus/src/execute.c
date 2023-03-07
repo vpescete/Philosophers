@@ -6,7 +6,7 @@
 /*   By: vpescete <vpescete@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 10:24:40 by vpescete          #+#    #+#             */
-/*   Updated: 2023/03/07 11:30:56 by vpescete         ###   ########.fr       */
+/*   Updated: 2023/03/07 12:03:32 by vpescete         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,12 @@ void	status_one(t_data *data)
 {
 	if (ft_gettimestamp(data->philo.start_sleep) >= data->death_time)
 		ft_close(data);
-	sem_wait(data->sem);
-	sem_wait(data->print);
-	printf("%llu %d %s\n", gettimeofday(&data->start_time, NULL),
-				data->philo.id, FORK);
+	if (sem_wait(data->sem) && sem_wait(data->print))
+	{
+		printf("%llu %d %s\n", gettimeofday(&data->start_time, NULL),
+					data->philo.id, FORK);
+		sem_post(data->print);
+	}
 	status_two(data);
 }
 
@@ -36,7 +38,14 @@ void	status_two(t_data *data)
 {
 	if (ft_gettimestamp(data->philo.start_sleep) >= data->death_time)
 		ft_close(data);
-	sem_wait(data->sem);
+	if (sem_wait(data->sem) && sem_wait(data->print))
+	{
+		printf("%llu %d %s\n", gettimeofday(&data->start_time, NULL),
+				data->philo.id, FORK);
+		printf("%llu %d %s\n", gettimeofday(&data->start_time, NULL),
+				data->philo.id, EAT);
+		sem_post(data->print);
+	}
 	gettimeofday(&data->philo.start_eat, NULL);
 	status_three(data);
 }
@@ -53,6 +62,12 @@ void	status_three(t_data *data)
 		}
 		sem_post(data->sem);
 		sem_post(data->sem);
+		if (sem_wait(data->print))
+		{
+			printf("%llu %d %s\n", gettimeofday(&data->start_time, NULL),
+						data->philo.id, SLEEP);
+			sem_post(data->print);
+		}
 		gettimeofday(&data->philo.start_sleep, NULL);
 		status_one(data);
 	}
