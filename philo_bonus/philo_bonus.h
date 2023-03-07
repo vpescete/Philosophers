@@ -6,7 +6,7 @@
 /*   By: vpescete <vpescete@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 15:25:36 by vpescete          #+#    #+#             */
-/*   Updated: 2023/03/07 10:02:05 by vpescete         ###   ########.fr       */
+/*   Updated: 2023/03/07 11:28:12 by vpescete         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,11 @@
 # define DEAD "died"
 
 typedef struct s_philo {
-	int				id;
-	int				status;
-	int				eat_count;
-	struct timeval	start_sleep;
-	struct timeval	start_eat;
+	int					id;
+	int					status;
+	int					eat_count;
+	struct timeval		start_sleep;
+	struct timeval		start_eat;
 }				t_philo;
 
 typedef struct s_data {
@@ -45,6 +45,8 @@ typedef struct s_data {
 	unsigned long		sleep_time;
 	struct timeval		start_time;
 	t_philo				philo;
+	sem_t				*sem;
+	sem_t				*print;
 }				t_data;
 
 /* UTILS FUNCTION */
@@ -56,7 +58,12 @@ t_data			*handle_input(int ac, char **av);
 int				check_input_int(int ac, char **av);
 void			handle_input_error(void);
 
-/* ALLOCATE FUNCITON */
+/* INIT FUNCITON */
 t_data			*allocate_data(char **av, char ac);
+void			sem_init(t_data *data);
+
+/* STATUS FUNCTION */
+void			execute_child(t_data *data);
+void			status_zero(t_data *data);
 
 #endif

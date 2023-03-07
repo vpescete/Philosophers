@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   allocate_mem.c                                     :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vpescete <vpescete@42student.fr>           +#+  +:+       +#+        */
+/*   By: vpescete <vpescete@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 16:34:53 by vpescete          #+#    #+#             */
-/*   Updated: 2023/03/06 21:03:40 by vpescete         ###   ########.fr       */
+/*   Updated: 2023/03/07 11:28:19 by vpescete         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,19 @@ t_data	*allocate_data(char **av, char ac)
 	gettimeofday(&data->start_time, NULL);
 	data->philo = philo;
 	return (data);
+}
+
+void	sem_init(t_data *data)
+{
+	char	*name;
+	char	*toprint;
+	sem_t	*sem;
+	sem_t	*print;
+	
+	name = "/forks";
+	toprint = "/print";
+	sem_unlink(name);
+	sem_unlink("/print");
+	data->sem = sem_open(name, O_CREAT, 0666, data->philo_num);
+	data->print = sem_open(toprint, O_CREAT, 0666, 1);
 }
