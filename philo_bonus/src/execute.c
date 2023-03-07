@@ -6,7 +6,7 @@
 /*   By: vpescete <vpescete@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 10:24:40 by vpescete          #+#    #+#             */
-/*   Updated: 2023/03/07 12:23:21 by vpescete         ###   ########.fr       */
+/*   Updated: 2023/03/07 12:36:55 by vpescete         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	status_zero(t_data *data)
 
 void	status_one(t_data *data)
 {
+	printf("status_one\n");
 	if (ft_gettimestamp(data->philo.start_sleep) >= data->death_time)
 	{
 		// ft_close(data);
@@ -84,6 +85,7 @@ void	execute_child(t_data *data)
 {	
 	data->philo.eat_count = 0;
 	data->philo.status = 1;
+	printf("ciao\n");
 	gettimeofday(&data->philo.start_sleep, NULL);
 	while (1)
 	{

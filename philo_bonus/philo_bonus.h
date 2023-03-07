@@ -6,7 +6,7 @@
 /*   By: vpescete <vpescete@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 15:25:36 by vpescete          #+#    #+#             */
-/*   Updated: 2023/03/07 12:11:55 by vpescete         ###   ########.fr       */
+/*   Updated: 2023/03/07 12:38:21 by vpescete         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef struct s_data {
 	t_philo				philo;
 	sem_t				*sem;
 	sem_t				*print;
+	
 }				t_data;
 
 /* UTILS FUNCTION */

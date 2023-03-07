@@ -6,7 +6,7 @@
 /*   By: vpescete <vpescete@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 15:25:15 by vpescete          #+#    #+#             */
-/*   Updated: 2023/03/07 12:16:41 by vpescete         ###   ########.fr       */
+/*   Updated: 2023/03/07 12:37:13 by vpescete         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ int	main(int ac, char **av)
 		if (parent == 0)
 		{
 			data->philo.id = i;
-			execute_child(data);
 			break ;
 		}
 	}
+	while(1);
 	return (0);
 }
