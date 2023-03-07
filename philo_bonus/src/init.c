@@ -6,7 +6,7 @@
 /*   By: vpescete <vpescete@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 16:34:53 by vpescete          #+#    #+#             */
-/*   Updated: 2023/03/07 12:08:32 by vpescete         ###   ########.fr       */
+/*   Updated: 2023/03/07 12:14:48 by vpescete         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	sem_initialize(t_data *data)
 {
 	char	*name;
 	char	*toprint;
-	
+
 	name = "/forks";
 	toprint = "/print";
 	sem_unlink(name);
