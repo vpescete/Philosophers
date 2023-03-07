@@ -6,7 +6,7 @@
 /*   By: vpescete <vpescete@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 10:24:40 by vpescete          #+#    #+#             */
-/*   Updated: 2023/03/07 17:38:37 by vpescete         ###   ########.fr       */
+/*   Updated: 2023/03/07 17:55:27 by vpescete         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	check_if_is_dead(t_data *data)
 {
 	if (ft_gettimestamp(data->philo.start_sleep) >= data->death_time)
 	{
-		// printf("sono qui!\n");
 		sem_wait(data->print);
 		printf("%lu %d %s\n", ft_gettimestamp(data->start_time),
 			data->philo.id, DEAD);
@@ -24,8 +23,6 @@ void	check_if_is_dead(t_data *data)
 			sem_post(data->sem);
 		sem_post(data->sem);
 		exit(0);
-		// sem_post(data->print);
-		// sem_post(data->sem);
 	}
 }
 
@@ -78,13 +75,16 @@ void	status_three(t_data *data)
 	if (ft_gettimestamp(data->philo.start_eat) >= data->eat_time)
 	{
 		data->philo.eat_count++;
-		// if (data->philo.eat_count == data->meals_nb)
-		// {
-		// 	sem_post(data->sem);
-		// 	sem_post(data->sem);
-		// 	data->philo.status = 10;
-		// 	return ;
-		// }
+		if (data->philo.eat_count == data->meals_nb)
+		{
+			sem_post(data->sem);
+			sem_post(data->sem);
+			sem_unlink("/forks");
+			sem_unlink("/print");
+			sem_close(data->sem);
+			sem_close(data->print);
+			exit(1);
+		}
 		sem_post(data->sem);
 		sem_post(data->sem);
 		sem_wait(data->print);

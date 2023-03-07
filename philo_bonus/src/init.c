@@ -6,7 +6,7 @@
 /*   By: vpescete <vpescete@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 16:34:53 by vpescete          #+#    #+#             */
-/*   Updated: 2023/03/07 16:29:59 by vpescete         ###   ########.fr       */
+/*   Updated: 2023/03/07 17:57:13 by vpescete         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ t_data	*allocate_data(char **av, char ac)
 		data->meals_nb = ft_atoi(av[5]);
 	else
 		data->meals_nb = 0;
+	data->philo.eat_count = 0;
 	return (data);
 }
 
