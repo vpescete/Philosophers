@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vpescete <vpescete@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vpescete <vpescete@42student.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 15:25:36 by vpescete          #+#    #+#             */
-/*   Updated: 2023/03/07 16:46:50 by vpescete         ###   ########.fr       */
+/*   Updated: 2023/03/07 18:45:17 by vpescete         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 # include <semaphore.h>
 # include <string.h>
 # include <sys/time.h>
+# include <sys/types.h>
+# include <sys/wait.h>
 # include <unistd.h>
 # include <fcntl.h>
 
@@ -70,5 +72,6 @@ void			status_zero(t_data *data);
 void			status_one(t_data *data);
 void			status_two(t_data *data);
 void			status_three(t_data *data);
+void			run_parent_process(t_data *data);
 
 #endif

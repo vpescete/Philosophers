@@ -3,28 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vpescete <vpescete@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vpescete <vpescete@42student.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 10:24:40 by vpescete          #+#    #+#             */
-/*   Updated: 2023/03/07 17:55:27 by vpescete         ###   ########.fr       */
+/*   Updated: 2023/03/07 18:45:49 by vpescete         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo_bonus.h"
-
-void	check_if_is_dead(t_data *data)
-{
-	if (ft_gettimestamp(data->philo.start_sleep) >= data->death_time)
-	{
-		sem_wait(data->print);
-		printf("%lu %d %s\n", ft_gettimestamp(data->start_time),
-			data->philo.id, DEAD);
-		if (data->philo.status == 3)
-			sem_post(data->sem);
-		sem_post(data->sem);
-		exit(0);
-	}
-}
 
 void	status_zero(t_data *data)
 {
@@ -55,6 +41,16 @@ void	status_one(t_data *data)
 
 void	status_two(t_data *data)
 {
+	if (data->philo_num == 1)
+	{
+		sem_wait(data->print);
+		printf("%lu %d %s\n", ft_gettimestamp(data->start_time),
+			data->philo.id, DEAD);
+		if (data->philo.status == 3)
+			sem_post(data->sem);
+		sem_post(data->sem);
+		exit(0);
+	}
 	check_if_is_dead(data);
 	sem_wait(data->sem);
 	sem_wait(data->print);
@@ -111,8 +107,5 @@ void	execute_child(t_data *data)
 			status_one(data);
 		else if (data->philo.status == 3)
 			status_three(data);
-		// else if (data->philo.status == 10)
-		// 	break ;
 	}
-	// send_sign(data);
 }

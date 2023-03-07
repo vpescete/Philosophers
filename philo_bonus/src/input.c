@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vpescete <vpescete@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vpescete <vpescete@42student.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 16:01:27 by vpescete          #+#    #+#             */
-/*   Updated: 2023/03/07 14:57:06 by vpescete         ###   ########.fr       */
+/*   Updated: 2023/03/07 18:45:26 by vpescete         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ t_data	*handle_input(int ac, char **av)
 		handle_input_error();
 		return (NULL);
 	}
-	// data->parent = fork();
 	return (data);
 }
 

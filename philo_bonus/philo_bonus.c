@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vpescete <vpescete@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vpescete <vpescete@42student.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 15:25:15 by vpescete          #+#    #+#             */
-/*   Updated: 2023/03/07 17:58:39 by vpescete         ###   ########.fr       */
+/*   Updated: 2023/03/07 18:44:42 by vpescete         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	run_parent_process(t_data *data)
 {
 	int	count_m;
 	int	status;
-	
+
 	count_m = 0;
 	while (waitpid(0, &status, 0))
 	{
@@ -53,7 +53,6 @@ int	main(int ac, char **av)
 	}
 	if (data->parent == 0)
 		execute_child(data);
-	// printf("ciao sono tua madre\n");
 	run_parent_process(data);
 	return (0);
 }

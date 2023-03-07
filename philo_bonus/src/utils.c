@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vpescete <vpescete@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vpescete <vpescete@42student.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 16:12:07 by vpescete          #+#    #+#             */
-/*   Updated: 2023/03/07 10:05:08 by vpescete         ###   ########.fr       */
+/*   Updated: 2023/03/07 18:45:57 by vpescete         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,18 @@ unsigned long	ft_gettimestamp(struct timeval goddog)
 	res = (((now.tv_sec * 1000) + (now.tv_usec / 1000))
 			- ((goddog.tv_sec * 1000) + (goddog.tv_usec / 1000)));
 	return (res);
+}
+
+void	check_if_is_dead(t_data *data)
+{
+	if (ft_gettimestamp(data->philo.start_sleep) >= data->death_time)
+	{
+		sem_wait(data->print);
+		printf("%lu %d %s\n", ft_gettimestamp(data->start_time),
+			data->philo.id, DEAD);
+		if (data->philo.status == 3)
+			sem_post(data->sem);
+		sem_post(data->sem);
+		exit(0);
+	}
 }
