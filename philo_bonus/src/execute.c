@@ -6,7 +6,7 @@
 /*   By: vpescete <vpescete@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 10:24:40 by vpescete          #+#    #+#             */
-/*   Updated: 2023/03/07 12:03:32 by vpescete         ###   ########.fr       */
+/*   Updated: 2023/03/07 12:10:34 by vpescete         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@
 void	status_zero(t_data *data)
 {
 	if (ft_gettimestamp(data->philo.start_sleep) >= data->death_time)
-		ft_close(data);
+	{
+		// ft_close(data);
+	}
 	if (ft_gettimestamp(data->philo.start_sleep) >= data->sleep_time)
 		status_one(data);
 }
@@ -24,10 +26,12 @@ void	status_zero(t_data *data)
 void	status_one(t_data *data)
 {
 	if (ft_gettimestamp(data->philo.start_sleep) >= data->death_time)
-		ft_close(data);
+	{
+		// ft_close(data);
+	}
 	if (sem_wait(data->sem) && sem_wait(data->print))
 	{
-		printf("%llu %d %s\n", gettimeofday(&data->start_time, NULL),
+		printf("%d %d %s\n", gettimeofday(&data->start_time, NULL),
 					data->philo.id, FORK);
 		sem_post(data->print);
 	}
@@ -37,12 +41,14 @@ void	status_one(t_data *data)
 void	status_two(t_data *data)
 {
 	if (ft_gettimestamp(data->philo.start_sleep) >= data->death_time)
-		ft_close(data);
+	{
+		// ft_close(data);
+	}
 	if (sem_wait(data->sem) && sem_wait(data->print))
 	{
-		printf("%llu %d %s\n", gettimeofday(&data->start_time, NULL),
+		printf("%d %d %s\n", gettimeofday(&data->start_time, NULL),
 				data->philo.id, FORK);
-		printf("%llu %d %s\n", gettimeofday(&data->start_time, NULL),
+		printf("%d %d %s\n", gettimeofday(&data->start_time, NULL),
 				data->philo.id, EAT);
 		sem_post(data->print);
 	}
@@ -64,7 +70,7 @@ void	status_three(t_data *data)
 		sem_post(data->sem);
 		if (sem_wait(data->print))
 		{
-			printf("%llu %d %s\n", gettimeofday(&data->start_time, NULL),
+			printf("%d %d %s\n", gettimeofday(&data->start_time, NULL),
 						data->philo.id, SLEEP);
 			sem_post(data->print);
 		}

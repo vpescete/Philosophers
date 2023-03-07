@@ -6,7 +6,7 @@
 /*   By: vpescete <vpescete@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 16:34:53 by vpescete          #+#    #+#             */
-/*   Updated: 2023/03/07 11:28:19 by vpescete         ###   ########.fr       */
+/*   Updated: 2023/03/07 12:08:32 by vpescete         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 t_data	*allocate_data(char **av, char ac)
 {
 	t_data	*data;
-	t_philo	philo;
 
 	data = malloc(sizeof(t_data));
 	if (!data)
@@ -29,16 +28,13 @@ t_data	*allocate_data(char **av, char ac)
 	else
 		data->meals_nb = 0;
 	gettimeofday(&data->start_time, NULL);
-	data->philo = philo;
 	return (data);
 }
 
-void	sem_init(t_data *data)
+void	sem_initialize(t_data *data)
 {
 	char	*name;
 	char	*toprint;
-	sem_t	*sem;
-	sem_t	*print;
 	
 	name = "/forks";
 	toprint = "/print";

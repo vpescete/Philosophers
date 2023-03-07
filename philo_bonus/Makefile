@@ -6,7 +6,8 @@ COLOUR_BLUE=\033[0;34m
 COLOUR_END=\033[0m
 
 SRC = philo_bonus.c \
-		src/input.c src/init.c src/utils.c
+		src/input.c src/init.c src/utils.c \
+		src/execute.c
 
 OBJ = $(SRC:.c=.o)
 
@@ -14,10 +15,10 @@ CC = gcc
 FLAG = -Wall -Werror -Wextra
 
 %.o: %.c
-	@$(CC) $(FLAG) -c $< -pthread -o $@
+	@$(CC) $(FLAG) -c $< -o $@
 
 $(NAME):	$(OBJ)
-	@$(CC) $(FLAG) $(OBJ) -pthread -o $(NAME) -g
+	@$(CC) $(FLAG) $(OBJ) -o $(NAME) -g
 	@echo "$(COLOUR_BLUE)$(NAME) has been created$(COLOUR_END)"
 
 all: $(NAME)

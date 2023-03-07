@@ -6,7 +6,7 @@
 /*   By: vpescete <vpescete@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 15:25:36 by vpescete          #+#    #+#             */
-/*   Updated: 2023/03/07 11:28:12 by vpescete         ###   ########.fr       */
+/*   Updated: 2023/03/07 12:11:55 by vpescete         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,13 @@ void			handle_input_error(void);
 
 /* INIT FUNCITON */
 t_data			*allocate_data(char **av, char ac);
-void			sem_init(t_data *data);
+void			sem_initialize(t_data *data);
 
 /* STATUS FUNCTION */
 void			execute_child(t_data *data);
 void			status_zero(t_data *data);
+void			status_one(t_data *data);
+void			status_two(t_data *data);
+void			status_three(t_data *data);
 
 #endif

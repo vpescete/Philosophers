@@ -6,7 +6,7 @@
 /*   By: vpescete <vpescete@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 15:25:15 by vpescete          #+#    #+#             */
-/*   Updated: 2023/03/07 10:38:03 by vpescete         ###   ########.fr       */
+/*   Updated: 2023/03/07 12:06:44 by vpescete         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	main(int ac, char **av)
 	pid_t	parent;
 
 	data = handle_input(ac, av);
-	sem_init(data);
+	sem_initialize(data);
 	i = -1;
 	while (++i < data->philo_num)
 	{
