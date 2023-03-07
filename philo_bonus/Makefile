@@ -6,7 +6,7 @@ COLOUR_BLUE=\033[0;34m
 COLOUR_END=\033[0m
 
 SRC = philo_bonus.c \
-		src/handle_input.c src/handle_error.c src/allocate_mem.c
+		src/input.c src/init.c src/utils.c
 
 OBJ = $(SRC:.c=.o)
 

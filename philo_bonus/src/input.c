@@ -1,16 +1,54 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_error.c                                     :+:      :+:    :+:   */
+/*   handle_input.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vpescete <vpescete@42student.fr>           +#+  +:+       +#+        */
+/*   By: vpescete <vpescete@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/06 16:04:19 by vpescete          #+#    #+#             */
-/*   Updated: 2023/03/06 16:04:44 by vpescete         ###   ########.fr       */
+/*   Created: 2023/03/06 16:01:27 by vpescete          #+#    #+#             */
+/*   Updated: 2023/03/07 10:05:23 by vpescete         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo_bonus.h"
+
+int	check_input_int(int ac, char **av)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (++i < ac)
+	{
+		j = 0;
+		while (av[i][j])
+		{
+			if (!(av[i][j] >= '0' && av[i][j] <= '9'))
+				return (0);
+			j++;
+		}
+	}
+	return (1);
+}
+
+t_data	*handle_input(int ac, char **av)
+{
+	t_data	*data;
+
+	if (ac < 5 || ac > 6 || !(ft_atoi(av[1]) >= 1 && ft_atoi(av[1]) <= 200)
+		|| !check_input_int(ac, av))
+	{
+		handle_input_error();
+		return (NULL);
+	}
+	data = allocate_data(av, ac);
+	if (data->death_time < 60 || data->sleep_time < 60 || data->eat_time < 60)
+	{
+		handle_input_error();
+		return (NULL);
+	}
+	return (data);
+}
 
 void	handle_input_error(void)
 {
