@@ -6,7 +6,7 @@
 /*   By: vpescete <vpescete@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 15:25:36 by vpescete          #+#    #+#             */
-/*   Updated: 2023/03/07 16:16:16 by vpescete         ###   ########.fr       */
+/*   Updated: 2023/03/07 16:46:50 by vpescete         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ typedef struct s_data {
 /* UTILS FUNCTION */
 unsigned long	ft_gettimestamp(struct timeval goddog);
 int				ft_atoi(char *s);
+void			check_if_is_dead(t_data *data);
 
 /* INPUT FUNCTION */
 t_data			*handle_input(int ac, char **av);

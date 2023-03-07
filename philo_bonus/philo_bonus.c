@@ -6,7 +6,7 @@
 /*   By: vpescete <vpescete@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 15:25:15 by vpescete          #+#    #+#             */
-/*   Updated: 2023/03/07 16:31:55 by vpescete         ###   ########.fr       */
+/*   Updated: 2023/03/07 16:49:55 by vpescete         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	main(int ac, char **av)
 	}
 	if (data->parent == 0)
 		execute_child(data);
-	printf("ciao sono tua madre\n");
+	// printf("ciao sono tua madre\n");
 	while (1)
 	{
 	}
