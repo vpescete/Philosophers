@@ -6,7 +6,7 @@
 /*   By: vpescete <vpescete@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 16:34:53 by vpescete          #+#    #+#             */
-/*   Updated: 2023/03/07 12:14:48 by vpescete         ###   ########.fr       */
+/*   Updated: 2023/03/07 16:29:59 by vpescete         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ t_data	*allocate_data(char **av, char ac)
 		data->meals_nb = ft_atoi(av[5]);
 	else
 		data->meals_nb = 0;
-	gettimeofday(&data->start_time, NULL);
 	return (data);
 }
 
@@ -39,7 +38,7 @@ void	sem_initialize(t_data *data)
 	name = "/forks";
 	toprint = "/print";
 	sem_unlink(name);
-	sem_unlink("/print");
+	sem_unlink(toprint);
 	data->sem = sem_open(name, O_CREAT, 0666, data->philo_num);
 	data->print = sem_open(toprint, O_CREAT, 0666, 1);
 }

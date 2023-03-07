@@ -15,10 +15,10 @@ CC = gcc
 FLAG = -Wall -Werror -Wextra
 
 %.o: %.c
-	@$(CC) $(FLAG) -c $< -o $@
+	@$(CC) -c $< -o $@
 
 $(NAME):	$(OBJ)
-	@$(CC) $(FLAG) $(OBJ) -o $(NAME) -g
+	@$(CC) $(OBJ) -o $(NAME) -g
 	@echo "$(COLOUR_BLUE)$(NAME) has been created$(COLOUR_END)"
 
 all: $(NAME)
