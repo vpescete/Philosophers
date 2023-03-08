@@ -6,6 +6,8 @@ CFLAG = -Wall -Werror -Wextra
 
 all: 
 	@make -C $(PHILO)
+
+bonus:
 	@make -C $(BPHILO)
 
 clean:

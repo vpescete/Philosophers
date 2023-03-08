@@ -53,7 +53,7 @@ t_data	*handle_input(int ac, char **av)
 void	handle_input_error(void)
 {
 	printf("\n\033[0;31mWRONG INPUT\033[0m\n\n");
-	printf("\tRIGHT INPUT:\t\033[0;32m./philo\t[number_of_philosophers]");
+	printf("\tRIGHT INPUT:\t\033[0;32m./philo_bonus\t[number_of_philosophers]");
 	printf(" [time_to_die] [time_to_eat] [time_to_sleep]");
 	printf(" (optional)[number_of_times_each_philosopher_must_eat]\033[0m\n\n");
 	printf("\t\e[4mAll the arguments has to be integers. the 2nd, ");
